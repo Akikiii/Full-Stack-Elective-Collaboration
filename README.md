@@ -1,5 +1,5 @@
-# Absenot Airsoft Armory
-Absenot Airsoft Armory is a full-stack web application designed to provide users with a convenient platform for purchasing airsoft guns and related products online. The application includes features such as a product catalog, user authentication, shopping cart functionality, order management, and more.
+# AbsenotArsenal
+Absenot Arsenal  is a full-stack web application designed to provide users with a convenient platform for purchasing  guns and related products online. The application includes features such as a product catalog, user authentication, shopping cart functionality, order management, and more.
 
 # Table of Contents
   * [Features](#features)
@@ -10,11 +10,11 @@ Absenot Airsoft Armory is a full-stack web application designed to provide users
 
 ## Features
 
-* Product Catalog: Browse through a diverse range of airsoft guns and accessories with detailed descriptions, images, and pricing information.
+* Product Catalog: Browse through a diverse range of guns and accessories with detailed descriptions, images, and pricing information.
 * User Authentication: Register and login to create a personalized account, enabling features such as order tracking and wishlist management.
 * Shopping Cart: Add items to your shopping cart, modify quantities, and proceed to checkout for secure payment processing.
 * Order Management: View order history, track the status of current orders, and manage shipping and billing information.
-* Reviews and Ratings: Share feedback and ratings for airsoft guns and accessories, helping other users make informed purchasing decisions.
+* Reviews and Ratings: Share feedback and ratings for  guns and accessories, helping other users make informed purchasing decisions.
 * Search and Filters: Search functionality and filtering options to help users find specific products based on criteria such as brand, type, FPS (feet per second), price range, and more.
 * Secure Payment Gateway: Enjoy peace of mind with secure payment processing and adherence to industry-standard security protocols.
 * Detailed Product Pages: Detailed product descriptions, specifications and high-resolution imagess to provide customers with all the necessary information about each item.
@@ -24,7 +24,7 @@ Absenot Airsoft Armory is a full-stack web application designed to provide users
 
 ## Benefits
 ### Customer
-* Guaranteed Availability: Reserve popular or high-demand airsoft guns, ensuring that they don't miss out on purchasing the item when they are ready.
+* Guaranteed Availability: Reserve popular or high-demand guns, ensuring that they don't miss out on purchasing the item when they are ready.
 * Convenience: The reservation feature saves customers time by allowing them to secure their desired products in advance without having to continuously monitor availability.
 * Information: Make informed decisions with detailed product descriptions, images, and user reviews.
 * Security: Trust in secure payment processing and compliance with legal regulations for a safe shopping experience.
