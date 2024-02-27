@@ -44,4 +44,19 @@ Open terminal and open CMD
       if an error happened activate the virtual environemnt (venv\Scripts\activate) until you see (venv) path/blablabla/blabla/
       once this is actiavted type django-admin --version to check again if still pip install django
 
--We use the command "python manage.py ____" 
+-pip install pillow (this is for adding image for database)
+
+
+-We use the command "python manage.py ______" to do something in django
+
+    Common Commands:
+    -py manage.py migrate (Migrates to database)
+    -py manage.py makemigration (Makes a migration table found in migrations folder)
+    -py manage.py runserver (Run server to localhost/)
+
+
+-----IMPORTANT------
+BEFORE EVERY PULL FROM GITHUB ALWAYS RUN FOR MIGRATION JUST INCASE OF NEW DATABASE DATA
+--------------------
+
+
