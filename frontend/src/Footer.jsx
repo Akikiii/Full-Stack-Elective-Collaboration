@@ -42,21 +42,22 @@ function Footer(){
                             <li className="my-4 list-none text-white">Phone: +639151866685</li>
                         </ul>
                         <div className='flex space-x-4'>
-                            <a href="text-white hover:text-pink-500 transition-all duration-150 ease-in-out transform hover:scale-150">
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-pink-500 transition-all duration-150 ease-in-out transform hover:scale-150">
                                 <FaGithub style={{ color: 'white' }} />
                             </a>
 
-                            <a href="text-white hover:text-pink-500 transition-all duration-150 ease-in-out transform hover:scale-150">
+                            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-pink-500 transition-all duration-150 ease-in-out transform hover:scale-150">
                                 <FaLinkedinIn style={{ color: 'white' }} />
                             </a>
 
-                            <a href="text-white hover:text-pink-500 transition-all duration-150 ease-in-out transform hover:scale-150">
+                            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-pink-500 transition-all duration-150 ease-in-out transform hover:scale-150">
                                 <FaTwitter style={{ color: 'white' }} />
                             </a>
 
-                            <a href="text-white hover:text-pink-500 transition-all duration-150 ease-in-out transform hover:scale-150">
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-pink-500 transition-all duration-150 ease-in-out transform hover:scale-150">
                                 <FaInstagram style={{ color: 'white' }} />
                             </a>
+
                         </div>
                     </div>
                 </div>
