@@ -1,5 +1,5 @@
-import Button from './Btn.jsx'
-import AbsenotSVG from './assets/absenotArsenal.svg'
+import Button from '../Btn.jsx'
+import AbsenotSVG from '../assets/absenotArsenal.svg'
 
 function Header(){
     let Links = [

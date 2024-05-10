@@ -1,15 +1,27 @@
-import Footer from './Footer.jsx'
-import Header from './Header.jsx'
+import Footer from './components/Footer.jsx'
+import Header from './components/Header.jsx'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from './pages/Login';
+import Home from './pages/Home';
+import NoPage from './pages/NoPage';
 
 function App(){
+  
 
   return(
     <>
-      <Header/>
-      <div className="bg-[#b3735b] w-full h-screen">
+      <Router>
+        <Routes>
+          <Route index element={<Home/>}/>
+          <Route path="/Home" element={<Home/>}/>
+          <Route path="/Login" element={<Login/>}/>
 
-      </div>
-      <Footer/>
+        </Routes>
+      </Router>
+     
+      
+  
+      
     </>
   );
 }
