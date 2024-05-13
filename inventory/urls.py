@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.shortcuts import redirect
+from .views import test_view
 from .views import dashboard
 
 urlpatterns = [
@@ -23,4 +24,7 @@ urlpatterns = [
     path('', dashboard, name='dashboard'),
     path('users/', include('users.urls')),
     path('store/', include('store.urls')),
+    path('test/', test_view, name='test_view'),
+    path('product/', lambda request: redirect('http://localhost:5173/product'), name='product_redirect'),
+    
 ]

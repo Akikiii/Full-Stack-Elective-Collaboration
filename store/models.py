@@ -42,6 +42,7 @@ class Drop(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=120, unique=True)
+    desc = models.CharField(max_length=500)
     sortno = models.PositiveIntegerField()
     created_date = models.DateField(auto_now_add=True)
 

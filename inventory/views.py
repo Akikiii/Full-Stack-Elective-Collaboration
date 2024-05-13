@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 from store.models import Product, Supplier, Buyer, Order
 
@@ -19,3 +20,8 @@ def dashboard(request):
         'orders': orders
     }
     return render(request, 'dashboard.html', context)
+
+
+def test_view(request):
+    data = {'message': 'Hello nigga!'}
+    return JsonResponse(data)
