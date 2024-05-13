@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import NoPage from './pages/NoPage';
 import SignUp from './pages/SignUp';
 import Product from './pages/Product';
+import AboutUs from './pages/AboutUs';
 
 function App(){
   
@@ -20,6 +21,8 @@ function App(){
           <Route path="*" element={<NoPage/>}/>
           <Route path="/SignUp" element={<SignUp/>}/>
           <Route path="/Product" element={<Product/>}/>
+          <Route path="/AboutUs" element={<AboutUs/>}/>
+
           
 
         </Routes>

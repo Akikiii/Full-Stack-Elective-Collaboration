@@ -5,7 +5,7 @@ function Footer(){
         <footer className="relative">
             <div className="absolute top-0 left-0 w-full overflow-hidden bg-[#060505]">
                 <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" className="relative block fill-[#b3735b]"></path>
+                    <path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" className="relative block fill-[#ffffff]"></path>
                 </svg>
                 <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-20 p-20 text-[18px]">
                     <div className="flex flex-col">
