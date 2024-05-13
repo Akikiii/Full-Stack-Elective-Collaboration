@@ -5,7 +5,13 @@ export default {
   ],
   theme: {
     extend: {},
+    container: {
+      center: true,
+      padding: "1rem",
+    },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide'),
+  ],
 }
 
