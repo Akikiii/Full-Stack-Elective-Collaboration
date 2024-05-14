@@ -9,13 +9,13 @@ import category1 from '../assets/category1.jpg';
 
 
 
-export class  Home extends Component {
+export class Home extends Component {
   render() {
   
 
     return (
       <>
-     
+    
         <Header/>
         <div className="bg-[#ffffff] w-full h-full">
           <Banner/>
