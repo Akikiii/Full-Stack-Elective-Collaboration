@@ -117,7 +117,7 @@ class ProductForm(forms.ModelForm):
             }),
             'sortno': forms.NumberInput(attrs={
                 'class': 'form-control', 'id': 'sortno'
-            })
+            }),
         }
 
 

@@ -3,6 +3,8 @@ from django.db import models
 from users.models import User
 
 
+
+
 class Supplier(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=120, unique=True)
@@ -41,9 +43,17 @@ class Drop(models.Model):
 
 
 class Product(models.Model):
+    CATEGORY_CHOICES = [
+        ('Firearm', 'firearm'),
+        ('Ammunition','ammunition'),
+        ('Attachments','attachments'),
+    ]
+
+    
     name = models.CharField(max_length=120, unique=True)
-    desc = models.CharField(max_length=500)
+    desc = models.CharField(max_length=500, default= 'This is an Item', null=True)
     sortno = models.PositiveIntegerField()
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='Firearm')
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
