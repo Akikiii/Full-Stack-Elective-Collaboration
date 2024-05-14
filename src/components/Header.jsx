@@ -3,10 +3,10 @@ import AbsenotSVG from '../assets/absenotArsenal.svg'
 
 function Header(){
     let Links = [
-        {name:"HOME",link:"/"},
-        {name:"SERVICE",link:"/"},
-        {name:"ABOUT",link:"/"},
-        {name:"CONTACT",link:"/"},
+        {name:"HOME",link:"/Home"},
+        {name:"SHOP",link:"/Shop"},
+        {name:"ABOUT",link:"/AboutUs"},
+        {name:"CONTACT",link:"/ContactUs"},
     ];
     
     return(
