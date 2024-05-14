@@ -1,6 +1,6 @@
 <aside id="left-panel" class="left-panel">
     <nav class="navbar navbar-expand-sm navbar-default">
-        <div id="main-menu" class="main-menu collapse navbar-collapse">
+        <div id="main-menu" class="main-menu">
             <ul class="nav navbar-nav">
                 <li class="active">
                     <a href="{% url 'dashboard' %}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
@@ -60,6 +60,9 @@
                         <li><i class="fa fa-id-card-o"></i><a href="{% url 'create-delivery' %}">Add</a></li>
                         <li><i class="fa fa-th"></i><a href="{% url 'delivery-list' %}">View</a></li>
                     </ul>
+                </li>
+                <li class="menu-item">
+                    <a class="nav-link" href="{% url 'logout' %}"  aria-haspopup="true"><i class="fa fa-power -off fa-sign-out"></i>                       Logout</a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
