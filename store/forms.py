@@ -107,7 +107,7 @@ class OrderForm(forms.ModelForm):
 
     class Meta:
         model = Order
-        fields = ['supplier', 'product', 'buyer', 'quantity'] 
+        fields = ['supplier', 'product', 'buyer'] 
 
         widgets = {
             'supplier': forms.Select(attrs={'class': 'form-control', 'id': 'supplier'}),

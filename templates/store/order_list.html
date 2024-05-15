@@ -45,8 +45,6 @@
                                 <th>Supplier</th>
                                 <th>Product</th>
                                 <th>Buyer</th>
-                                <th>Quantity</th>
-                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,21 +55,6 @@
                                 <td>{{ order.supplier }}</td>
                                 <td>{{ order.product }}</td>
                                 <td>{{ order.buyer }}</td>
-                                <td>
-                                    {% if order.status == 'pending' %}
-                                        <a class="btn btn-warning" href="">{{ order.status }}</a>
-                                    {% elif order.status == 'decline' %}
-                                        <a class="btn btn-danger" href="">{{ order.status }}</a>
-                                    {% elif order.status == 'complete' %}
-                                        <a class="btn btn-success" href="">{{ order.status }}</a>
-                                    {% elif order.status == 'approved' %}
-                                        <a class="btn btn-primary" href="">{{ order.status }}</a>
-                                    {% elif order.status == 'bulk' %}
-                                        <a class="btn btn-secondary" href="">{{ order.status }}</a>
-                                    {% else %}
-                                        <a class="btn btn-info" href="">{{ order.status }}</a>
-                                    {% endif %}
-                                </td>
                             </tr>
                             {% endfor %}
                             {% else %}

@@ -97,6 +97,7 @@ class Order(models.Model):
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     buyer = models.ForeignKey(Buyer, on_delete=models.CASCADE, null=True)
+    quantity = models.PositiveIntegerField(default = 0)
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):

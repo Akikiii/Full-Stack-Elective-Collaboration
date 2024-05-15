@@ -124,7 +124,7 @@ def create_drop(request):
             product.save()
             # Save Drop instance
             form.save()
-            return redirect('store/product-list')  # Redirect to success page
+            return redirect('products-list')  # Redirect to success page
     else:
         form = DropForm()
     return render(request, 'store/create_drop.html', {'form': form})
@@ -172,18 +172,20 @@ def create_order(request):
             product = form.cleaned_data['product']
             buyer = form.cleaned_data['buyer']
             quantity = form.cleaned_data['quantity']
+            total_price = product.price * quantity
 
-            # Create the order
             Order.objects.create(
                 supplier=supplier,
                 product=product,
                 buyer=buyer,
+                quantity=quantity  
             )
 
-            # Update the product's available quantity by deducting the ordered quantity
             Product.objects.filter(pk=product.pk).update(quantity=F('quantity') - quantity)
 
-            return redirect('order-list')
+
+            context = {'form': form, 'total_price': total_price, 'quantity': quantity}
+            return render(request, 'store/create_order.html', context)
     context = {'form': form}
     return render(request, 'store/create_order.html', context)
 

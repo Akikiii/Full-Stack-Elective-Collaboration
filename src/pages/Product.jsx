@@ -151,7 +151,7 @@ export default function Product() {
                             </a>
                             <p className="text-sm text-gray-500 mb-2">{product.category}</p>
                             <div class="flex items-baseline mb-1 space-x-2">
-                                <p class="text-xl text-primary font-semibold">${product.price}</p>
+                                <p class="text-xl text-primary font-semibold">₱{product.price}</p>
                                 
                             </div>
                         </div>
