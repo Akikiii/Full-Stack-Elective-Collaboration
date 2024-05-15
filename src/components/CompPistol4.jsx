@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SR9 from '../assets/guns/pistols/sr9.png'
+import SR9 from '../assets/guns/pistols/sr9.jpg'
 
 const CompPistol1 = () => {
     const [show, setShow] = useState(false);

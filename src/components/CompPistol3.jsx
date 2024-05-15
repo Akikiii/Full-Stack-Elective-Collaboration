@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SR1911 from '../assets/guns/pistols/ruger sr1911cmd-a.png'
+import SR1911 from '../assets/guns/pistols/ruger sr1911cmd-a.jpg'
 
 const CompPistol3 = () => {
     const [show, setShow] = useState(false);

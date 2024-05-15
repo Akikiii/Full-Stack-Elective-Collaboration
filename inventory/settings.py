@@ -103,7 +103,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME' : 'arsenalDB',
         'USER' : 'postgres',
-        'PASSWORD' : 'admin',
+        'PASSWORD' : '!Charles123',
         'HOST' : 'localhost'
     }
 }
