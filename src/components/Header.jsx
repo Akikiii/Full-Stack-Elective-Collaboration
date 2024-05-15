@@ -28,9 +28,6 @@ function Header(){
                         </li>
                         )) 
                     }
-                    <Button>
-                        Read More
-                    </Button>
                 </ul>
             </div>
         </div>
