@@ -37,14 +37,13 @@
                 <strong class="card-title">Create Product</strong>
             </div>
             <div class="card-body">
-                <!-- Credit Card -->
                 <div id="pay-invoice">
                     <div class="card-body">
                         <form action="#" method="post" novalidate="novalidate">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="name" class="control-label mb-1">Name</label>
-                                {{ form.name }}
+                                <label for="gunModel" class="control-label mb-1">Model</label>
+                                {{ form.gunModel }}
                             </div>
                             <div class="form-group">
                                 <label for="sortno" class="control-label mb-1">Sort No</label>
@@ -54,6 +53,10 @@
                                 <label for="category" class="control-label mb-1">Category</label>
                                 {{ form.category }}
                             </div>
+                            <div class="form-group">
+                                <label for="price" class="control-label mb-1">Price</label>
+                                {{ form.price }}
+                            </div>
                             <div>
                                 <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                     <span id="payment-button-amount">Create Product</span>
@@ -62,10 +65,44 @@
                         </form>
                     </div>
                 </div>
-
             </div>
-        </div> <!-- .card -->
-
-    </div><!--/.col-->
+        </div>
+    </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const categorySelect = document.getElementById('id_category');
+    const subCategoryDiv = document.getElementById('sub-category-div');
+    const subCategorySelect = document.getElementById('id_subcategory');
+
+    const subCategoryOptions = {
+        'Firearm': ['Pistol', 'Shotgun', 'Rifle'],
+        'Ammunition': ['9mm', '5.56mm', '7.62mm'],
+        'Attachments': ['Magazine', 'Optics', 'Knives']
+    };
+
+    categorySelect.addEventListener('change', function() {
+        const selectedCategory = categorySelect.value;
+        subCategorySelect.innerHTML = '';
+
+        if (selectedCategory in subCategoryOptions) {
+            subCategoryDiv.style.display = 'block';
+            subCategoryOptions[selectedCategory].forEach(option => {
+                const newOption = document.createElement('option');
+                newOption.value = option.toLowerCase().replace(' ', '_');
+                newOption.textContent = option;
+                subCategorySelect.appendChild(newOption);
+            });
+        } else {
+            subCategoryDiv.style.display = 'none';
+        }
+    });
+
+    if (categorySelect.value) {
+        categorySelect.dispatchEvent(new Event('change'));
+    }
+});
+</script>
+
 {% endblock content %}
