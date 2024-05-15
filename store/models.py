@@ -44,17 +44,38 @@ class Drop(models.Model):
 
 class Product(models.Model):
     CATEGORY_CHOICES = [
-        ('Firearm', 'firearm'),
-        ('Ammunition','ammunition'),
-        ('Attachments','attachments'),
+        ('Pistol', 'Firearm - Pistol'),
+        ('Shotgun', 'Firearm - Shotgun'),
+        ('Rifle', 'Firearm - Rifle'),
+        ('Magazine','Accessories - Magazine'),
+        ('Optics','Accessories - Optics'),
+        ('Knives','Accessories - Knives'),
+        ('Ammunition','Ammunition'),
     ]
 
+    SUBCATEGORY_CHOICES = {
+        'Firearm': [
+            ('Pistol', 'Pistol'),
+            ('Shotgun', 'Shotgun'),
+            ('Rifle', 'Rifle')
+        ],
+        'Attachments': [
+            ('Magazine', 'Magazine'),
+            ('Optics', 'Optics'),
+            ('Knives', 'Knives')
+        ]
+    }
+
     
-    name = models.CharField(max_length=120, unique=True)
+    gunModel = models.CharField(max_length=120, unique=True)
     desc = models.CharField(max_length=500, default= 'This is an Item', null=True)
-    sortno = models.PositiveIntegerField()
+    sortno = models.PositiveIntegerField(unique = True)
+    quantity = models.PositiveIntegerField(default = 0)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='Firearm')
+    subcategory = models.CharField(max_length=50, choices=[], default='', null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     created_date = models.DateField(auto_now_add=True)
+
 
     def __str__(self):
         return self.name

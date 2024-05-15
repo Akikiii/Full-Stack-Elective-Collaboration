@@ -18,13 +18,14 @@ from django.urls import path, include
 from django.shortcuts import redirect
 from .views import test_view
 from .views import dashboard
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', dashboard, name='dashboard'),
+    path('api/', include('store.urls')),
     path('users/', include('users.urls')),
     path('store/', include('store.urls')),
     path('test/', test_view, name='test_view'),
-    path('product/', lambda request: redirect('http://localhost:5173/product'), name='product_redirect'),
     
 ]

@@ -22,24 +22,6 @@ class SupplierForm(forms.Form):
         'data-val': 'true',
         'data-val-required': 'Please enter email',
     }))
-    username = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control',
-        'id': 'username',
-        'data-val': 'true',
-        'data-val-required': 'Please enter username',
-    }))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'class': 'form-control',
-        'id': 'password',
-        'data-val': 'true',
-        'data-val-required': 'Please enter password',
-    }))
-    retype_password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'class': 'form-control',
-        'id': 'retype_password',
-        'data-val': 'true',
-        'data-val-required': 'Please enter retype_password',
-    }))
 
 
 class BuyerForm(forms.Form):
@@ -61,25 +43,6 @@ class BuyerForm(forms.Form):
         'data-val': 'true',
         'data-val-required': 'Please enter email',
     }))
-    username = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control',
-        'id': 'username',
-        'data-val': 'true',
-        'data-val-required': 'Please enter username',
-    }))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'class': 'form-control',
-        'id': 'password',
-        'data-val': 'true',
-        'data-val-required': 'Please enter password',
-    }))
-    retype_password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'class': 'form-control',
-        'id': 'retype_password',
-        'data-val': 'true',
-        'data-val-required': 'Please enter retype_password',
-    }))
-
 
 class SeasonForm(forms.ModelForm):
     class Meta:
@@ -110,17 +73,24 @@ class DropForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'sortno']
+        fields = ['gunModel', 'sortno', 'category', 'price', 'quantity']
         widgets = {
-            'name': forms.TextInput(attrs={
-                'class': 'form-control', 'id': 'name'
+            'gunModel': forms.TextInput(attrs={
+                'class': 'form-control', 'id': 'gunModel'
             }),
             'sortno': forms.NumberInput(attrs={
                 'class': 'form-control', 'id': 'sortno'
             }),
+             'category': forms.Select(attrs={
+                'class': 'form-control', 'id': 'category'
+            }),
+             'price': forms.NumberInput(attrs={
+                'class': 'form-control', 'id': 'price', 'step': '0.01'
+            }),
+            'quantity': forms.NumberInput(attrs={
+                'class': 'form-control', 'id': 'quantity'
+            }),
         }
-
-
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
@@ -166,3 +136,17 @@ class DeliveryForm(forms.ModelForm):
                 'class': 'form-control', 'id': 'courier_name'
             }),
         }
+
+    def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields['subcategory'].choices = []  #This starts with no choices
+
+            if 'category' in self.data:
+                category = self.data.get('category')
+                self.fields['subcategory'].choices = Product.SUBCATEGORY_CHOICES.get(category, [])
+            elif self.instance.pk:
+                category = self.instance.category
+                self.fields['subcategory'].choices = Product.SUBCATEGORY_CHOICES.get(category, [])
+        
+
+

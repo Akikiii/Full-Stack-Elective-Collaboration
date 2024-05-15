@@ -44,7 +44,10 @@
                                 <th class="serial">#</th>
                                 <th>Name</th>
                                 <th>Sort No</th>
-                                <th>Date</th>
+                                <th>Category</th>
+                                <th>Quantity</th>
+                                <th>Price/pc</th>
+                                <th>Last Stocked</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,8 +55,12 @@
                             {% for product in product %}
                             <tr>
                                 <td class="serial">{{ forloop.counter }}</td>
-                                <td>{{ product.name }}</td>
+                                <td>{{ product.gunModel }}</td>
                                 <td>{{ product.sortno }}</td>
+                                <td>{{ product.category }}</td>
+                                <td>{{ product.quantity }}</td>
+                                <td>${{ product.price }}</td>
+
                                 <td>{{ product.created_date }}</td>
                             </tr>
                             {% endfor %}

@@ -1,8 +1,15 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
-
+from rest_framework import generics
+from .models import Product
+from .serializer import ProductSerializer
 from users.models import User
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Product
+from django.http import JsonResponse
 from .models import (
     Supplier,
     Buyer,
@@ -137,7 +144,7 @@ def create_product(request):
         forms = ProductForm(request.POST)
         if forms.is_valid():
             forms.save()
-            return redirect('product-list')
+            return redirect('product-list') 
     context = {
         'form': forms
     }
@@ -210,3 +217,15 @@ class DeliveryListView(ListView):
     model = Delivery
     template_name = 'store/delivery_list.html'
     context_object_name = 'delivery'
+
+
+class ProductListViewer(APIView):
+    def get(self, request):
+        products = Product.objects.all()
+        serializer = ProductSerializer(products, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+def product_list(request):
+    products = Product.objects.all()
+    products_list = list(products.values())  # Convert QuerySet to list of dictionaries
+    return JsonResponse(products_list, safe=False)
