@@ -50,14 +50,7 @@ export class Home extends Component {
           <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">Top New Arrival</h2>
           <ScrollbarHorizontal/>
         </div>
-        
-        
-        <div className="container pb-16 justify-center w-full">
-            <a href="#">
-                <img src={offer} alt="ads" className="w-full"/>
-            </a>
-        </div>
-        
+
       </div>
       <Footer/>
       </>
