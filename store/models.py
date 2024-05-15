@@ -18,9 +18,11 @@ class Supplier(models.Model):
 
 
 class Buyer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=120, unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=120)
     address = models.CharField(max_length=220)
+    email = models.EmailField(max_length=220, default='')
+    contact_number = models.CharField(max_length=20, default="none")
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -80,7 +82,7 @@ class Product(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return self.gunModel
 
 
 class Order(models.Model):
@@ -94,12 +96,7 @@ class Order(models.Model):
     )
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    design = models.CharField(max_length=50)
-    color = models.CharField(max_length=50)
     buyer = models.ForeignKey(Buyer, on_delete=models.CASCADE, null=True)
-    season = models.ForeignKey(Season, on_delete=models.CASCADE, null=True)
-    drop = models.ForeignKey(Drop, on_delete=models.CASCADE, null=True)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICE)
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):

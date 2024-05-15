@@ -49,6 +49,12 @@ class BuyerForm(forms.Form):
         'data-val': 'true',
         'data-val-required': 'Please enter email',
     }))
+    contact_number = forms.CharField(widget=forms.EmailInput(attrs={
+        'class': 'form-control',
+        'id': 'email',
+        'data-val': 'true',
+        'data-val-required': 'Please enter number',
+    }))
 
 class SeasonForm(forms.ModelForm):
     class Meta:
@@ -67,10 +73,12 @@ class SeasonForm(forms.ModelForm):
 
 class DropForm(forms.ModelForm):
     supplier = forms.ModelChoiceField(queryset=Supplier.objects.all(), empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+    product = forms.ModelChoiceField(queryset=Product.objects.all(), empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+    quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     
     class Meta:
         model = Drop
-        fields = ['name', 'supplier']
+        fields = ['name', 'supplier', 'product', 'quantity']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'id': 'name'})
         }
@@ -95,35 +103,18 @@ class ProductForm(forms.ModelForm):
             }),
         }
 class OrderForm(forms.ModelForm):
+    quantity = forms.IntegerField(min_value=1)
+
     class Meta:
         model = Order
-        fields = [
-            'supplier', 'product', 'design', 'color', 'buyer', 'season', 'drop'
-        ]
+        fields = ['supplier', 'product', 'buyer', 'quantity'] 
 
         widgets = {
-            'supplier': forms.Select(attrs={
-                'class': 'form-control', 'id': 'supplier'
-            }),
-            'product': forms.Select(attrs={
-                'class': 'form-control', 'id': 'product'
-            }),
-            'design': forms.TextInput(attrs={
-                'class': 'form-control', 'id': 'design'
-            }),
-            'color': forms.TextInput(attrs={
-                'class': 'form-control', 'id': 'color'
-            }),
-            'buyer': forms.Select(attrs={
-                'class': 'form-control', 'id': 'buyer'
-            }),
-            'season': forms.Select(attrs={
-                'class': 'form-control', 'id': 'season'
-            }),
-            'drop': forms.Select(attrs={
-                'class': 'form-control', 'id': 'drop'
-            }),
+            'supplier': forms.Select(attrs={'class': 'form-control', 'id': 'supplier'}),
+            'product': forms.Select(attrs={'class': 'form-control', 'id': 'product'}),
+            'buyer': forms.Select(attrs={'class': 'form-control', 'id': 'buyer'}),
         }
+
 
 
 class DeliveryForm(forms.ModelForm):

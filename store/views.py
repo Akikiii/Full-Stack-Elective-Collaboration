@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
+from django.db.models import F
 from rest_framework import generics
+from django.db import transaction
 from .models import Product
 from .serializer import ProductSerializer
 from users.models import User
@@ -62,25 +64,21 @@ class SupplierListView(ListView):
 # Buyer views
 @login_required(login_url='login')
 def create_buyer(request):
-    forms = BuyerForm()
     if request.method == 'POST':
-        forms = BuyerForm(request.POST)
-        if forms.is_valid():
-            name = forms.cleaned_data['name']
-            address = forms.cleaned_data['address']
-            email = forms.cleaned_data['email']
-            username = forms.cleaned_data['username']
-            password = forms.cleaned_data['password']
-            retype_password = forms.cleaned_data['retype_password']
-            if password == retype_password:
-                user = User.objects.create_user(
-                    username=username, password=password,
-                    email=email, is_buyer=True
-                )
-                Buyer.objects.create(user=user, name=name, address=address)
-                return redirect('buyer-list')
+        form = BuyerForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            address = form.cleaned_data['address']
+            email = form.cleaned_data['email']
+            contact_number = form.cleaned_data['contact_number']
+            user = request.user
+            buyer = Buyer.objects.create(user=user, name=name, address=address, email=email, contact_number=contact_number)
+            return redirect('buyer-list')
+    else:
+        form = BuyerForm()
+        
     context = {
-        'form': forms
+        'form': form
     }
     return render(request, 'store/create_buyer.html', context)
 
@@ -113,18 +111,24 @@ class SeasonListView(ListView):
 
 
 # Drop views
+
 @login_required(login_url='login')
 def create_drop(request):
-    forms = DropForm()
     if request.method == 'POST':
-        forms = DropForm(request.POST)
-        if forms.is_valid():
-            forms.save()
-            return redirect('drop-list')
-    context = {
-        'form': forms
-    }
-    return render(request, 'store/create_drop.html', context)
+        form = DropForm(request.POST)
+        if form.is_valid():
+            product = form.cleaned_data['product']
+            quantity = form.cleaned_data['quantity']
+            # Update product quantity
+            product.quantity += quantity
+            product.save()
+            # Save Drop instance
+            form.save()
+            return redirect('store/product-list')  # Redirect to success page
+    else:
+        form = DropForm()
+    return render(request, 'store/create_drop.html', {'form': form})
+
 
 
 class DropListView(ListView):
@@ -156,33 +160,33 @@ class ProductListView(ListView):
 
 # Order views
 @login_required(login_url='login')
+
+
+@login_required(login_url='login')
 def create_order(request):
-    forms = OrderForm()
+    form = OrderForm()
     if request.method == 'POST':
-        forms = OrderForm(request.POST)
-        if forms.is_valid():
-            supplier = forms.cleaned_data['supplier']
-            product = forms.cleaned_data['product']
-            design = forms.cleaned_data['design']
-            color = forms.cleaned_data['color']
-            buyer = forms.cleaned_data['buyer']
-            season = forms.cleaned_data['season']
-            drop = forms.cleaned_data['drop']
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            supplier = form.cleaned_data['supplier']
+            product = form.cleaned_data['product']
+            buyer = form.cleaned_data['buyer']
+            quantity = form.cleaned_data['quantity']
+
+            # Create the order
             Order.objects.create(
                 supplier=supplier,
                 product=product,
-                design=design,
-                color=color,
                 buyer=buyer,
-                season=season,
-                drop=drop,
-                status='pending'
             )
+
+            # Update the product's available quantity by deducting the ordered quantity
+            Product.objects.filter(pk=product.pk).update(quantity=F('quantity') - quantity)
+
             return redirect('order-list')
-    context = {
-        'form': forms
-    }
+    context = {'form': form}
     return render(request, 'store/create_order.html', context)
+
 
 
 class OrderListView(ListView):
