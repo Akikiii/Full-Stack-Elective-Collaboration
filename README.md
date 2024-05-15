@@ -11,7 +11,6 @@ Absenot Arsenal  is a full-stack web application designed to provide users with 
 ## Features
 
 * Product Catalog: Browse through a diverse range of guns and accessories with detailed descriptions, images, and pricing information.
-* User Authentication: Register and login to create a personalized account, enabling features such as order tracking and wishlist management.
 * Search and Filters: Search functionality and filtering options to help users find specific products based on criteria such as brand, type, FPS (feet per second), price range, and more.
 * Detailed Product Pages: Detailed product descriptions, specifications and high-resolution imagess to provide customers with all the necessary information about each item.
 * Real-time Inventory Management: Ensures accurate availability status. When a customer reserves a product, the system should instantly update the inventory count to reflect the reservation.
