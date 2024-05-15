@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import Productplaceholder from '../assets/placeholder.svg'
-import gun1 from '../assets/glock.png'
+
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import glock18 from '../assets/glock18.png'
+import test from '../assets/test.png'
 
 export default function Product() {
   const [products, setProducts] = useState([]);
@@ -78,6 +80,7 @@ export default function Product() {
       default:
         break;
     }
+    console.log(filtered);
     
 
     setFilteredProducts(filtered);
@@ -148,8 +151,8 @@ export default function Product() {
                     filteredProducts.map(product => (
                       <div key={product.id} class="bg-white shadow rounded overflow-hidden group w-[400px]">
                         <div class=" flex justify-center items-center">
-                          <img src={Productplaceholder} alt="product 1" className='h-[225px] object-contain' />
-                        </div>
+                          <img src={`src/assets/guns/${product.gunModel}.jpg`} alt="product 1" className='h-[225px] object-contain' />
+                        </div>  
                         <div class="pt-4 pb-3 px-4">
                             <div className={`inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${product.quantity === 0 ? 'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80' : 'border-primary bg-primary text-primary-foreground hover:bg-primary/80'} mb-2`}>
                                 {product.quantity === 0 ? 'Out of Stock' : 'In Stock'}
