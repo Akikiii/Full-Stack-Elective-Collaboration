@@ -53,19 +53,19 @@ function App(){
           <Route path="/Product" element={<Product/>}/>
           <Route path="/Product/m&p bodyguard 380" element={<Pistol1/>}/>
           <Route path="/Product/micro amethyst" element={<Pistol2/>}/>
-          <Route path="/Product/sr1911" element={<Pistol3/>}/>
+          <Route path="/Product/ruger sr1911" element={<Pistol3/>}/>
           <Route path="/Product/sr9" element={<Pistol4/>}/>
-          <Route path="/Product/supermatchii" element={<Pistol5/>}/>
+          <Route path="/Product/super match ii" element={<Pistol5/>}/>
           <Route path="/Product/rx22" element={<Rifle1/>}/>
           <Route path="/Product/mk3" element={<Rifle2/>}/>
           <Route path="/Product/rock island m16" element={<Rifle3/>}/>
-          <Route path="/Product/522" element={<Rifle4/>}/>
-          <Route path="/Product/mpx" element={<Rifle5/>}/>
-          <Route path="/Product/ghost-ring" element={<Shotgun1/>}/>
-          <Route path="/Product/fabarm" element={<Shotgun2/>}/>
-          <Route path="/Product/m500" element={<Shotgun3/>}/>
-          <Route path="/Product/m930" element={<Shotgun4/>}/>
-          <Route path="/Product/field-silver" element={<Shotgun5/>}/>
+          <Route path="/Product/sig sauer 522" element={<Rifle4/>}/>
+          <Route path="/Product/sig sauer mpx" element={<Rifle5/>}/>
+          <Route path="/Product/590a1 ghost ring" element={<Shotgun1/>}/>
+          <Route path="/Product/fabarm model axis" element={<Shotgun2/>}/>
+          <Route path="/Product/m500 persuader insight" element={<Shotgun3/>}/>
+          <Route path="/Product/m930 field security" element={<Shotgun4/>}/>
+          <Route path="/Product/over under field silver" element={<Shotgun5/>}/>
           <Route path="/Product/mag1" element={<Magazine1/>}/>
           <Route path="/Product/mag2" element={<Magazine2/>}/>
           <Route path="/Product/mag3" element={<Magazine3/>}/>
