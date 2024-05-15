@@ -1,15 +1,15 @@
 # AbsenotArsenal
 
 - [Table of Contents](#table-of-contents)
-  * [Database Diagram](#database-diagram)
+   * [Database Diagram](#database-diagram)
   * [Libraries Used](#libraries-used)
   * [Images of the Application](#images-of-the-application)
     + [Dashboard](#dashboard)
     + [Storefront](#storefront)
   * [Contributors](#contributors)
-    + [Jose, Joei Raqui](#jose--joei-raqui)
-  * [Trazo, Charles](#trazo--charles)
-    + [Borja, Ralph Jacob](#borja--ralph-jacob)
+    + [Jose, Joei](#jose--joei)
+    + [Trazo, Charles](#trazo--charles)
+    + [Borja, Ralph](#borja--ralph)
   * [Features](#features)
   * [Benefits](#benefits)
     + [Customer](#customer)
@@ -62,6 +62,17 @@ Absenot Arsenal  is a full-stack web application designed to provide users with 
 ![image](https://github.com/Akikiii/Full-Stack-Elective-Collaboration/assets/120948162/98f55193-2fdc-4b60-bd1f-c5df1285f627)
 ![image](https://github.com/Akikiii/Full-Stack-Elective-Collaboration/assets/120948162/b562c496-80cb-4d2a-82bb-0c965db2e739)
 ![image](https://github.com/Akikiii/Full-Stack-Elective-Collaboration/assets/120948162/c6853954-75cf-4c74-a1d5-e8a9e41a10bb)
+
+## Contributors
+### Jose, Joei
+![image](https://github.com/Akikiii/Full-Stack-Elective-Collaboration/assets/120948162/34946985-1ea9-42b4-ac87-58caeab403da)
+
+### Trazo, Charles
+![image](https://github.com/Akikiii/Full-Stack-Elective-Collaboration/assets/120948162/c8559ee6-281c-4b56-93d1-91c2bc639bb7)
+
+### Borja, Ralph
+![image](https://github.com/Akikiii/Full-Stack-Elective-Collaboration/assets/120948162/84d2f8d0-f1f5-4df3-a6ab-8bfb4f16db3b)
+
 
 ## Features
 
