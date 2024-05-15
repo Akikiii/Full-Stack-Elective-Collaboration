@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import Productplaceholder from '../assets/placeholder.svg';
+import Productplaceholder from '../assets/placeholder.svg'
+import gun1 from '../assets/glock.png'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 export default function Product() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
+  const [selectedCheckbox, setSelectedCheckbox] = useState(null);
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [sortOption, setSortOption] = useState('');
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/products/')
       .then(response => {
         setProducts(response.data);
+        setFilteredProducts(response.data); // Initialize filtered products with all products
       })
       .catch(error => {
         setError(error);
@@ -17,78 +26,157 @@ export default function Product() {
       });
   }, []);
 
+  useEffect(() => {
+    applyFilters();
+  }, [products, selectedCheckbox, minPrice, maxPrice, sortOption]);
+
+  const handleCheckboxChange = (event) => {
+    setSelectedCheckbox(event.target.id);
+  };
+
+  const handleMinPriceChange = (e) => {
+    setMinPrice(e.target.value);
+  };
+
+  const handleMaxPriceChange = (e) => {
+    setMaxPrice(e.target.value);
+  };
+
+  const handleSortChange = (e) => {
+    setSortOption(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    applyFilters();
+  };
+
+  const applyFilters = () => {
+    let filtered = products;
+
+    if (selectedCheckbox && selectedCheckbox !== 'All') {
+      filtered = filtered.filter(product => product.category === selectedCheckbox);
+    }
+
+    if (minPrice) {
+      filtered = filtered.filter(product => product.price >= parseFloat(minPrice));
+    }
+
+    if (maxPrice) {
+      filtered = filtered.filter(product => product.price <= parseFloat(maxPrice));
+    }
+
+    switch (sortOption) {
+      case 'price-low-to-high':
+        filtered = filtered.sort((a, b) => a.price - b.price);
+        break;
+      case 'price-high-to-low':
+        filtered = filtered.sort((a, b) => b.price - a.price);
+        break;
+      case 'latest':
+        filtered = filtered.sort((a, b) => new Date(b.created_date) - new Date(a.created_date));
+        break;
+      default:
+        break;
+    }
+    
+
+    setFilteredProducts(filtered);
+  };
   return (
-    <div className='bg-gray-50 h-screen p-3 sm:p-5'>
-      <div className="container mx-auto px-4 py-8 bg-gray-50">
-        <div className="grid grid-cols-4 gap-8">
-          <aside className="col-span-1 space-y-6">
-            <section aria-labelledby="categories-heading">
-              <h2 id="categories-heading" className="text-lg font-semibold">
-                Categories
-              </h2>
-              <nav className="mt-2 space-y-1">
-                <a className="block" href="#" rel="ugc">All</a>
-                <a className="block" href="#" rel="ugc">Firearm</a>
-                <a className="block" href="#" rel="ugc">Accessories</a>
-                <a className="block" href="#" rel="ugc">Ammunition</a>
-              </nav>
-            </section>
-            <section aria-labelledby="filters-heading">
-              <h2 id="filters-heading" className="text-lg font-semibold">Filters</h2>
-              <div className="mt-2 space-y-4">
+    <>
+    <Header/>
+    <div className='h-screen w-full bg-gray-50 px-auto py-36'>
+        <div className="container flex mx-auto px-4 py-8 gap-x-1.5	 ">
+        <div className="col-span-1 bg-white px-4 pb-6 shadow rounded overflow-hiddenb hidden md:block">
+            <div className="divide-y divide-gray-200 space-y-5">
                 <div>
-                  <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="brand">Brand</label>
-                  <button type="button" role="combobox" aria-controls="radix-:r1:" aria-expanded="false" aria-autocomplete="none" dir="ltr" data-state="closed" data-placeholder="" className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-htmlForeground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="brand">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 opacity-50" aria-hidden="true">
-                      <path d="m6 9 6 6 6-6"></path>
-                    </svg>
-                  </button>
-                </div>
-                <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-htmlForeground hover:bg-primary/90 h-10 px-4 py-2 w-full">SEARCH</button>
-              </div>
-            </section>
-          </aside>
-          <div className="col-span-3">
-            <div className="flex justify-between items-center mb-6">
-              <button type="button" role="combobox" aria-controls="radix-:r2:" aria-expanded="false" aria-autocomplete="none" dir="ltr" data-state="closed" data-placeholder="" className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="sorting">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 opacity-50" aria-hidden="true">
-                  <path d="m6 9 6 6 6-6"></path>
-                </svg>
-              </button>
-              <div className="flex border rounded overflow-hidden">
-                <input className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 outline-none pl-4" placeholder="Search Products..." type="search" />
-                <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 border-l">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.3-4.3"></path>
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-6">
-              {error ? (
-                <div className="col-span-2 text-red-500">
-                  Error: {error.message}
-                </div>
-              ) : (
-                products.map(product => (
-                  <div key={product.id} className="rounded-lg border text-card-foreground shadow-sm bg-white px-6 py-8 mx-auto lg:py-0">
-                    <div className="p-6">
-                      <div className={`inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${product.quantity === 0 ? 'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80' : 'border-primary bg-primary text-primary-foreground hover:bg-primary/80'} mb-2`}>
-                        {product.quantity === 0 ? 'Out of Stock' : 'In Stock'}
-                      </div>
-                      <img alt="Product" className="w-full h-auto mb-4" src={Productplaceholder} width="150" height="150" />
-                      <h3 className="text-lg font-semibold mb-1">{product.gunModel}</h3>
-                      <p className="text-sm text-gray-500 mb-2">{product.category}</p>
-                      <p className="text-lg font-semibold">${product.price}</p>
+                    <h3 className="text-xl text-gray-800 mb-3 uppercase font-medium">Categories</h3>
+                    <div className="space-y-2">
+                        <div className="flex items-center">
+                            <input type="checkbox" name="All" id="All" checked={selectedCheckbox === 'All'} onChange={handleCheckboxChange}
+                                className="text-primary focus:ring-0 rounded-sm cursor-pointer"/>
+                            <label for="All" className="text-gray-600 ml-3 cusror-pointer">All</label>
+                        </div>
+                        <div className="flex items-center">
+                            <input type="checkbox" name="Pistol" id="Pistol" checked={selectedCheckbox === 'Pistol'} onChange={handleCheckboxChange}
+                                className="text-primary focus:ring-0 rounded-sm cursor-pointer"/>
+                            <label for="Pistol" className="text-gray-600 ml-3 cusror-pointer">Pistol</label>
+                        </div>
+                        <div className="flex items-center">
+                            <input type="checkbox" name="Shotgun" id="Shotgun" checked={selectedCheckbox === 'Shotgun'} onChange={handleCheckboxChange}
+                                className="text-primary focus:ring-0 rounded-sm cursor-pointer"/>
+                            <label for="Shotgun" className="text-gray-600 ml-3 cusror-pointer">Shotgun</label>
+                        </div>
+                        <div className="flex items-center">
+                            <input type="checkbox" name="Rifles" id="Rifles" checked={selectedCheckbox === 'Rifles'} onChange={handleCheckboxChange}
+                                className="text-primary focus:ring-0 rounded-sm cursor-pointer"/>
+                            <label for="Rifles" className="text-gray-600 ml-3 cusror-pointer">Rifles</label>
+                        </div>                        
                     </div>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
+                </div>
+                <div className="pt-4">
+                    <h3 className="text-xl text-gray-800 mb-3 uppercase font-medium">Price</h3>
+                    <div className="mt-4 flex items-center">
+                        <input type="text" name="min" id="min" value={minPrice} onChange={handleMinPriceChange}
+                            className="w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
+                            placeholder="min"/>
+                        <span className="mx-3 text-gray-500">-</span>
+                        <input type="text" name="max" id="max" value={maxPrice} onChange={handleMaxPriceChange}
+                            className="w-full border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
+                            placeholder="max"/>
+                    </div>
+                </div>
+                </div>
+
         </div>
-      </div>
+        <div class="w-full">
+            <div class="flex items-center mb-4">
+                <select name="sort" id="sort" value={sortOption} onChange={handleSortChange}
+                    class="w-44 text-sm text-gray-600 py-3 px-4 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary">
+                    <option value="">Default sorting</option>
+                    <option value="price-low-to-high">Price low to high</option>
+                    <option value="price-high-to-low">Price high to low</option>
+                    <option value="latest">Latest product</option>
+                </select>
+            </div>
+            <div class="grid md:grid-cols-3 grid-cols-2 gap-16">
+                              {error ? (
+                    <div className="col-span-2 text-red-500">
+                      Error: {error.message}
+                    </div>
+                  ) : (
+                    filteredProducts.map(product => (
+                      <div key={product.id} class="bg-white shadow rounded overflow-hidden group w-[400px]">
+                        <div class=" flex justify-center items-center">
+                          <img src={Productplaceholder} alt="product 1" className='h-[225px] object-contain' />
+                        </div>
+                        <div class="pt-4 pb-3 px-4">
+                            <div className={`inline-flex w-fit items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${product.quantity === 0 ? 'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80' : 'border-primary bg-primary text-primary-foreground hover:bg-primary/80'} mb-2`}>
+                                {product.quantity === 0 ? 'Out of Stock' : 'In Stock'}
+                              </div>
+                            <a href="#">
+                                <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">{product.gunModel}</h4>
+                            </a>
+                            <p className="text-sm text-gray-500 mb-2">{product.category}</p>
+                            <div class="flex items-baseline mb-1 space-x-2">
+                                <p class="text-xl text-primary font-semibold">${product.price}</p>
+                                
+                            </div>
+                        </div>
+                        <a href="#"
+                            class="block w-full py-1 text-center text-white bg-red-600 border border-primary rounded-b hover:bg-red-900	 hover:text-primary transition">View Item</a>
+                    </div>
+                      
+
+                      
+                    ))
+                  )}
+                
+            </div>
+        </div>
+        </div>
     </div>
+    <Footer/>
+    </>
   );
 }

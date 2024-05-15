@@ -4,7 +4,7 @@ import AbsenotSVG from '../assets/absenotArsenal.svg'
 function Header(){
     let Links = [
         {name:"HOME",link:"/Home"},
-        {name:"SHOP",link:"/Shop"},
+        {name:"SHOP",link:"/Product"},
         {name:"ABOUT",link:"/AboutUs"},
         {name:"CONTACT",link:"/ContactUs"},
     ];
