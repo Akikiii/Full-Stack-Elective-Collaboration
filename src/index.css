@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
     background-color: hsl(226, 83%, 7%)
 }

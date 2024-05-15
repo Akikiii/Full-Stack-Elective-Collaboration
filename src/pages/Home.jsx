@@ -12,61 +12,59 @@ import category3 from '../assets/category3.jpg'
 
 
 export class Home extends Component {
+  
   render() {
   
-
     return (
       <>
-    
-        <Header/>
-        <div className="bg-[#ffffff] w-full h-full">
-          <Banner/>
-          <div className="w-full">
-            <Features/>
-          </div>
-          <div class="container py-16">
-            <h2 class="container text-2xl font-medium text-gray-800 uppercase mb-6">shop by category</h2>
-            <div class="grid grid-cols-3 gap-3">
-              <div class="relative rounded-sm overflow-hidden group">
-                  <img src={category1} alt="category 1" class="object-cover"/>
-                  <a href="#"
-                      class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition">Rifles</a>
-              </div>
-              <div class="relative rounded-sm overflow-hidden group">
-                  <img src={category2} alt="category 2" class="object-cover h-full w-full"/>
-                  <a href="#"
-                      class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition">Accessories</a>
-              </div>
-              <div class="relative rounded-sm overflow-hidden group">
-                  <img src={category3} alt="category 3" class="object-cover h-full w-full"/>
-                  <a href="#"
-                      class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition">Ammo</a>
-              </div>
+      <Header/>
+      <div className="bg-[#ffffff] w-full h-full pt-28">
+
+        <Banner/>
+
+        {/* <div className="w-full">
+          <Features/>
+        </div> */}
+
+        <div className="container py-16">
+          <h2 className="container text-2xl font-medium text-gray-800 uppercase mb-6">shop by category</h2>
+          <div className="grid grid-cols-3 gap-3">
+            <div className="relative rounded-sm overflow-hidden group">
+                <img src={category1} alt="category 1" className="object-cover"/>
+                <a href="#"
+                    className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition">Rifles</a>
+            </div>
+            <div className="relative rounded-sm overflow-hidden group">
+                <img src={category2} alt="category 2" className="object-cover h-full w-full"/>
+                <a href="#"
+                    className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition">Accessories</a>
+            </div>
+            <div className="relative rounded-sm overflow-hidden group">
+                <img src={category3} alt="category 3" className="object-cover h-full w-full"/>
+                <a href="#"
+                    className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition">Ammunition</a>
             </div>
           </div>
-          <div class="container pb-16">
-            <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">Top New Arrival</h2>
-            <ScrollbarHorizontal/>
-          </div>
-          
-          
-          <div class="container pb-16 justify-center w-full">
-              <a href="#">
-                  <img src={offer} alt="ads" class="w-full"/>
-              </a>
-          </div>
-
-
-
-          
-          
+        </div>
+        <div className="container pb-16">
+          <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">Top New Arrival</h2>
+          <ScrollbarHorizontal/>
         </div>
         
-        <Footer/>
+        
+        <div className="container pb-16 justify-center w-full">
+            <a href="#">
+                <img src={offer} alt="ads" className="w-full"/>
+            </a>
+        </div>
+        
+      </div>
+      <Footer/>
       </>
       
     )
   }
+  
 }
 
 export default Home

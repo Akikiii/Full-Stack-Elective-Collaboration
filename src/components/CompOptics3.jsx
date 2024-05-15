@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import OPTICS from '../assets/accessories/optics/optics 1.jpg'
+import OPTICS from '../assets/accessories/optics/optics 3.jpg'
 
 const CompOptics3 = () => {
     const [show, setShow] = useState(false);
