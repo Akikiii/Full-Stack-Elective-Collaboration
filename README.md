@@ -8,6 +8,25 @@ Absenot Arsenal  is a full-stack web application designed to provide users with 
     + [Platform](#platform)
   * [Django](#django)
 
+## Libraries Used
+
+* ASGIREF
+* Django
+* Flake8
+* Mccabe
+* Pycodestyle
+* Pyflakes
+* Pytz
+* SQLparse
+* React
+* React-icons
+* Tailwind-hide-scrollbar
+* BOOTSTRAP
+* Google Fonts
+* Axios
+* PE-ICON-7-STROKE
+* Favicon
+
 ## Features
 
 * Product Catalog: Browse through a diverse range of guns and accessories with detailed descriptions, images, and pricing information.

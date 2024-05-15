@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Season, Drop, Product, Order, Delivery
+from .models import Season, Drop, Product, Order, Delivery, Supplier
 
 
 class SupplierForm(forms.Form):
@@ -21,6 +21,12 @@ class SupplierForm(forms.Form):
         'id': 'email',
         'data-val': 'true',
         'data-val-required': 'Please enter email',
+    }))
+    contact_number = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'id': 'contact_number',
+        'data-val': 'true',
+        'data-val-required': 'Please enter contact number',
     }))
 
 
@@ -43,6 +49,12 @@ class BuyerForm(forms.Form):
         'data-val': 'true',
         'data-val-required': 'Please enter email',
     }))
+    contact_number = forms.CharField(widget=forms.EmailInput(attrs={
+        'class': 'form-control',
+        'id': 'email',
+        'data-val': 'true',
+        'data-val-required': 'Please enter number',
+    }))
 
 class SeasonForm(forms.ModelForm):
     class Meta:
@@ -60,20 +72,22 @@ class SeasonForm(forms.ModelForm):
 
 
 class DropForm(forms.ModelForm):
+    supplier = forms.ModelChoiceField(queryset=Supplier.objects.all(), empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+    product = forms.ModelChoiceField(queryset=Product.objects.all(), empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+    quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    
     class Meta:
         model = Drop
-        fields = ['name']
+        fields = ['name', 'supplier', 'product', 'quantity']
         widgets = {
-            'name': forms.TextInput(attrs={
-                'class': 'form-control', 'id': 'name'
-            })
+            'name': forms.TextInput(attrs={'class': 'form-control', 'id': 'name'})
         }
 
 
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['gunModel', 'sortno', 'category', 'price', 'quantity']
+        fields = ['gunModel', 'sortno', 'category', 'price']
         widgets = {
             'gunModel': forms.TextInput(attrs={
                 'class': 'form-control', 'id': 'gunModel'
@@ -87,40 +101,20 @@ class ProductForm(forms.ModelForm):
              'price': forms.NumberInput(attrs={
                 'class': 'form-control', 'id': 'price', 'step': '0.01'
             }),
-            'quantity': forms.NumberInput(attrs={
-                'class': 'form-control', 'id': 'quantity'
-            }),
         }
 class OrderForm(forms.ModelForm):
+    quantity = forms.IntegerField(min_value=1)
+
     class Meta:
         model = Order
-        fields = [
-            'supplier', 'product', 'design', 'color', 'buyer', 'season', 'drop'
-        ]
+        fields = ['supplier', 'product', 'buyer', 'quantity'] 
 
         widgets = {
-            'supplier': forms.Select(attrs={
-                'class': 'form-control', 'id': 'supplier'
-            }),
-            'product': forms.Select(attrs={
-                'class': 'form-control', 'id': 'product'
-            }),
-            'design': forms.TextInput(attrs={
-                'class': 'form-control', 'id': 'design'
-            }),
-            'color': forms.TextInput(attrs={
-                'class': 'form-control', 'id': 'color'
-            }),
-            'buyer': forms.Select(attrs={
-                'class': 'form-control', 'id': 'buyer'
-            }),
-            'season': forms.Select(attrs={
-                'class': 'form-control', 'id': 'season'
-            }),
-            'drop': forms.Select(attrs={
-                'class': 'form-control', 'id': 'drop'
-            }),
+            'supplier': forms.Select(attrs={'class': 'form-control', 'id': 'supplier'}),
+            'product': forms.Select(attrs={'class': 'form-control', 'id': 'product'}),
+            'buyer': forms.Select(attrs={'class': 'form-control', 'id': 'buyer'}),
         }
+
 
 
 class DeliveryForm(forms.ModelForm):
