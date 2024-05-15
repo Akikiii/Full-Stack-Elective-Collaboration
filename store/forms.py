@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Season, Drop, Product, Order, Delivery
+from .models import Season, Drop, Product, Order, Delivery, Supplier
 
 
 class SupplierForm(forms.Form):
@@ -21,6 +21,12 @@ class SupplierForm(forms.Form):
         'id': 'email',
         'data-val': 'true',
         'data-val-required': 'Please enter email',
+    }))
+    contact_number = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'id': 'contact_number',
+        'data-val': 'true',
+        'data-val-required': 'Please enter contact number',
     }))
 
 
@@ -60,20 +66,20 @@ class SeasonForm(forms.ModelForm):
 
 
 class DropForm(forms.ModelForm):
+    supplier = forms.ModelChoiceField(queryset=Supplier.objects.all(), empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
+    
     class Meta:
         model = Drop
-        fields = ['name']
+        fields = ['name', 'supplier']
         widgets = {
-            'name': forms.TextInput(attrs={
-                'class': 'form-control', 'id': 'name'
-            })
+            'name': forms.TextInput(attrs={'class': 'form-control', 'id': 'name'})
         }
 
 
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['gunModel', 'sortno', 'category', 'price', 'quantity']
+        fields = ['gunModel', 'sortno', 'category', 'price']
         widgets = {
             'gunModel': forms.TextInput(attrs={
                 'class': 'form-control', 'id': 'gunModel'
@@ -86,9 +92,6 @@ class ProductForm(forms.ModelForm):
             }),
              'price': forms.NumberInput(attrs={
                 'class': 'form-control', 'id': 'price', 'step': '0.01'
-            }),
-            'quantity': forms.NumberInput(attrs={
-                'class': 'form-control', 'id': 'quantity'
             }),
         }
 class OrderForm(forms.ModelForm):

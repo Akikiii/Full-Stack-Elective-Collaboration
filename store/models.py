@@ -6,9 +6,11 @@ from users.models import User
 
 
 class Supplier(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=120, unique=True)
     address = models.CharField(max_length=220)
+    email = models.EmailField(max_length=220, default='')
+    contact_number = models.CharField(max_length=20, default="none")
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):

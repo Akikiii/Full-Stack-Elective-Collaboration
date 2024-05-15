@@ -33,27 +33,24 @@ from .forms import (
 # Supplier views
 @login_required(login_url='login')
 def create_supplier(request):
-    forms = SupplierForm()
+    form = SupplierForm()
     if request.method == 'POST':
-        forms = SupplierForm(request.POST)
-        if forms.is_valid():
-            name = forms.cleaned_data['name']
-            address = forms.cleaned_data['address']
-            email = forms.cleaned_data['email']
-            username = forms.cleaned_data['username']
-            password = forms.cleaned_data['password']
-            retype_password = forms.cleaned_data['retype_password']
-            if password == retype_password:
-                user = User.objects.create_user(
-                    username=username, password=password,
-                    email=email, is_supplier=True
-                )
-                Supplier.objects.create(user=user, name=name, address=address)
-                return redirect('supplier-list')
+        form = SupplierForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            address = form.cleaned_data['address']
+            email = form.cleaned_data['email']
+            contact_number = form.cleaned_data['contact_number']
+            user = request.user
+            Supplier.objects.create(user=user, name=name, address=address, email=email, contact_number=contact_number)
+            return redirect('supplier-list')
     context = {
-        'form': forms
+        'form': form
     }
     return render(request, 'store/create_supplier.html', context)
+
+
+
 
 
 class SupplierListView(ListView):
