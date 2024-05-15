@@ -4,8 +4,7 @@ import Productplaceholder from '../assets/placeholder.svg'
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import glock18 from '../assets/glock18.png'
-import test from '../assets/test.png'
+
 
 export default function Product() {
   const [products, setProducts] = useState([]);

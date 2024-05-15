@@ -31,17 +31,17 @@ export class Home extends Component {
           <div className="grid grid-cols-3 gap-3">
             <div className="relative rounded-sm overflow-hidden group">
                 <img src={category1} alt="category 1" className="object-cover"/>
-                <a href="#"
+                <a href="/Product"
                     className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition">Rifles</a>
             </div>
             <div className="relative rounded-sm overflow-hidden group">
                 <img src={category2} alt="category 2" className="object-cover h-full w-full"/>
-                <a href="#"
+                <a href="/Product"
                     className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition">Accessories</a>
             </div>
             <div className="relative rounded-sm overflow-hidden group">
                 <img src={category3} alt="category 3" className="object-cover h-full w-full"/>
-                <a href="#"
+                <a href="/Product"
                     className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition">Ammunition</a>
             </div>
           </div>
