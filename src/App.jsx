@@ -33,6 +33,7 @@ import Knives2 from './pages/Knives2';
 import Knives3 from './pages/Knives3';
 import Ammunition1 from './pages/Ammunition1';
 
+
 function App(){
   
 
@@ -49,14 +50,15 @@ function App(){
           <Route path="/AboutUs" element={<AboutUs/>}/>
           <Route path="/Shop" element={<Shop/>}/>
           <Route path="/ContactUs" element={<ContactUs/>}/>
-          <Route path="/Product/bodyguard380" element={<Pistol1/>}/>
-          <Route path="/Product/microamethyst" element={<Pistol2/>}/>
+          <Route path="/Product" element={<Product/>}/>
+          <Route path="/Product/m&p bodyguard 380" element={<Pistol1/>}/>
+          <Route path="/Product/micro amethyst" element={<Pistol2/>}/>
           <Route path="/Product/sr1911" element={<Pistol3/>}/>
           <Route path="/Product/sr9" element={<Pistol4/>}/>
           <Route path="/Product/supermatchii" element={<Pistol5/>}/>
           <Route path="/Product/rx22" element={<Rifle1/>}/>
           <Route path="/Product/mk3" element={<Rifle2/>}/>
-          <Route path="/Product/m16" element={<Rifle3/>}/>
+          <Route path="/Product/rock island m16" element={<Rifle3/>}/>
           <Route path="/Product/522" element={<Rifle4/>}/>
           <Route path="/Product/mpx" element={<Rifle5/>}/>
           <Route path="/Product/ghost-ring" element={<Shotgun1/>}/>

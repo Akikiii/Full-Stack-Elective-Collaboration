@@ -87,7 +87,7 @@ export default function Product() {
   return (
     <>
     <Header/>
-    <div className='h-screen w-full bg-gray-50 px-auto py-36'>
+    <div className='h-screen w-full h-full bg-gray-50 px-auto py-36'>
         <div className="container flex mx-auto px-4 py-8 gap-x-1.5	 ">
         <div className="col-span-1 bg-white px-4 pb-6 shadow rounded overflow-hiddenb hidden md:block">
             <div className="divide-y divide-gray-200 space-y-5">
@@ -165,7 +165,7 @@ export default function Product() {
                                 
                             </div>
                         </div>
-                        <a href="#"
+                        <a href={`/product/${product.gunModel}`}
                             class="block w-full py-1 text-center text-white bg-red-600 border border-primary rounded-b hover:bg-red-900	 hover:text-primary transition">View Item</a>
                     </div>
                       
