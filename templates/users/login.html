@@ -26,58 +26,79 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <style>
+
+        h1.custom-font {
+            font-family: "Bebas Neue", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            color: #c30404;
+            font-size: 5.5rem;
+        }
+
+        .custom-card {
+            background-color: #f5f5f5;
+        }
+
+        .tight-spacing {
+            margin-top: -10px;
+        }
+
+        .lower-content {
+            margin-top: 180px;
+        }
+
+    </style>
+
 </head>
 
-<body class="bg-dark">
 
-    <div class="sufee-login d-flex align-content-center flex-wrap">
+<body class="bg-white">
+    <div class="px-4 py-5 px-md-5 text-lg-start lower-content">
         <div class="container">
-            <div class="login-content">
-                <div class="login-logo">
-                    <h2 style="color: #fff">Inventory Management System</h2>
+            <div class="row gx-lg-10 align-items-center">
+                <div class="col-md-6">
+                    <h1 class="my-1 display-3 fw-bold ls-tight custom-font">
+                        ABSENOT ARSENAL
+                    </h1>
+                    <p class="tight-spacing" style="color: hsl(217, 10%, 50.8%)">
+                        Precision, Protection, Perfection.
+                    </p>
                 </div>
-                <div class="login-form">
-                    <form method="POST">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label>Username</label>
-                            <!-- <input type="text" class="form-control" placeholder="Username"> -->
-                            {{ form.username }}
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            {{ form.password }}
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Remember Me
-                            </label>
-                            <label class="pull-right">
-                                <a href="#">Forgotten Password?</a>
-                            </label>
 
+                <div class="col-md-6 mb-5 mb-lg-0 ">
+                    <div class="card custom-card">
+                        <div class="card-body py-5 px-md-5">
+                            <form method="POST">
+                                {% csrf_token %}
+
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <!-- <input type="text" class="form-control" placeholder="Username"> -->
+                                    {{ form.username }}
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    {{ form.password }}
+                                </div>
+
+                                <!-- Submit button -->
+                                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-block mb-4 rounded- py-3 text-white" style="background-color: #c30404; border-color: #c30404;">
+                                    Sign up
+                                </button>
+                                
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Log in</button>
-                        <div class="social-login-content">
-                            <div class="social-button">
-                                <button type="button" class="btn social facebook btn-flat btn-addon mb-3"><i class="ti-facebook"></i>Sign in with facebook</button>
-                                <button type="button" class="btn social twitter btn-flat btn-addon mt-2"><i class="ti-twitter"></i>Sign in with twitter</button>
-                            </div>
-                        </div>
-                        <div class="register-link m-t-15 text-center">
-                            <p>Don't have account ? <a href="#"> Sign Up Here</a></p>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-    <script src="{% static 'assets/js/main.js' %}"></script>
-
 </body>
 </html>
